@@ -38,7 +38,7 @@ export function HomePage() {
 
     <section className="section faq" id="faq"><p className="eyebrow">常見問題</p><h2>想知道的事，都先放在這裡。</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
 
-    <section className="download-callout section"><div><p className="eyebrow">即將推出</p><h2>星星戀愛日記，即將與你見面。</h2><p>App Store · Coming soon / Google Play · Coming soon</p></div><span aria-hidden="true">✦</span></section>
+    <section className="download-callout section"><div><p className="eyebrow">即將推出</p><h2>星星戀愛日記，即將與你見面。</h2><p>App Store · Coming soon / Google Play · Coming soon</p></div><img className="download-callout__cat" src="/starry-love-diary-official-site/assets/final-black-cat.webp" alt="" aria-hidden="true" /></section>
   </>
 }
 
