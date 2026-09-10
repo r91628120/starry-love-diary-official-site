@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>星星戀愛日記｜Visual V2 Preview</title>
+  <title>星星戀愛日記｜Visual V3 Preview</title>
   <style>
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100%; background: #fff9f4; font-family: system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
@@ -21,15 +21,14 @@
 </head>
 <body>
   <div class="preview-bar">
-    <strong>Visual V2 預覽</strong>
-    <span class="status" id="status">載入改版樣式中…</span>
+    <strong>Visual V3 預覽</strong>
+    <span class="status" id="status">載入 Artistic Storybook Style 中…</span>
     <a href="./" target="_blank" rel="noopener">開啟目前正式版</a>
   </div>
-  <iframe id="site-preview" title="星星戀愛日記 Visual V2 預覽" src="./"></iframe>
+  <iframe id="site-preview" title="星星戀愛日記 Visual V3 預覽" src="./"></iframe>
   <script>
     const frame = document.getElementById('site-preview');
     const status = document.getElementById('status');
-    const cssUrl = 'https://raw.githubusercontent.com/r91628120/starry-love-diary/does-not-exist';
     const previewCssUrl = 'https://raw.githubusercontent.com/r91628120/starry-love-diary-official-site/visual-v2-polish/src/styles/brand-art.css';
 
     frame.addEventListener('load', async () => {
@@ -39,10 +38,10 @@
         const css = await response.text();
         const doc = frame.contentDocument;
         const style = doc.createElement('style');
-        style.id = 'visual-v2-preview-style';
+        style.id = 'visual-v3-preview-style';
         style.textContent = css;
         doc.head.appendChild(style);
-        status.textContent = 'PR #1 改版樣式已套用';
+        status.textContent = 'Artistic Storybook Style 已套用';
       } catch (error) {
         console.error(error);
         status.textContent = '預覽樣式載入失敗，請重新整理';
