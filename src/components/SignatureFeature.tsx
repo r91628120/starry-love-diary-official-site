@@ -1,0 +1,4 @@
+export function SignatureFeature({ eyebrow, title, intro, items, alternate }: { eyebrow: string; title: string; intro: string; items: readonly string[]; alternate?: boolean }) {
+  const variant = alternate ? 'signature-feature signature-feature--alternate' : 'signature-feature'
+  return <article className={variant}><div className="signature-feature__copy"><p className="eyebrow">{eyebrow}</p><h3>{title}</h3><p>{intro}</p><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div><div className={alternate ? 'signature-art signature-art--card' : 'signature-art signature-art--reveal'} aria-hidden="true"><span className="signature-art__moon">☾</span><span className="signature-art__heart">♡</span><span className="signature-art__stars">✦ · ✧ · ✦</span><span className="signature-art__count">1 / 7</span></div></article>
+}
