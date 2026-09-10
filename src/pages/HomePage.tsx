@@ -29,7 +29,7 @@ export function HomePage() {
 
     <section className="storybook-break section" aria-label="星星戀愛日記的故事">
       <div className="storybook-break__art" aria-hidden="true" />
-      <div className="storybook-break__copy"><p className="eyebrow">Visual V3 · Artistic Storybook Style</p><h2>在某個平凡的日子裡，也為自己留一點溫柔。</h2><p>你可以喜歡一個人，也可以期待、想念、猜測與不安。這本日記不替你回答愛情，只陪你把心動記下來，再慢慢把注意力帶回自己。</p><span>記錄 · 觀察 · 理解 · 回到自己</span></div>
+      <div className="storybook-break__copy"><p className="eyebrow">Artistic Storybook Style</p><h2>在某個平凡的日子裡，也為自己留一點溫柔。</h2><p>你可以喜歡一個人，也可以期待、想念、猜測與不安。這本日記不替你回答愛情，只陪你把心動記下來，再慢慢把注意力帶回自己。</p><span>記錄 · 觀察 · 理解 · 回到自己</span></div>
     </section>
 
     <section className="section star-systems" id="star-systems"><div><p className="eyebrow">累積與收藏</p><h2>星心值是什麼？</h2><p>它只是使用 App、記錄自己與整理心情時，留下的累積足跡。不是愛情分數、不是對方愛你的程度，也不是關係成功率。</p><div className="score-table" role="table" aria-label="星心值規則">{scoreRules.map(([action, score]) => <div role="row" key={action}><span role="cell">{action}</span><strong role="cell">{score}</strong></div>)}</div></div><div className="star-bottle-copy"><h3>星星是怎麼來的？</h3><p><strong>心情星星：</strong>每天記錄心情時，建立當天的一顆心情星星。同一天改變心情，更新同一顆，不重複增加。</p><p><strong>清醒星星：</strong>完成清醒工具後，只有主動選擇「存成清醒星星」才建立。</p><p className="notice">星星數量不等於星心值分數；它們是兩個不同系統。</p></div></section>
