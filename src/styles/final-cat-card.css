@@ -1,4 +1,4 @@
-/* Final polish: replace the abstract footer-card dot with a seated black cat looking toward the scene. */
+/* Final polish: use the real illustrated black cat asset in the closing card. */
 .download-callout {
   min-height: 17.5rem;
   padding-right: clamp(12rem, 28vw, 24rem) !important;
@@ -18,47 +18,39 @@
 }
 
 .download-callout::after {
-  right: clamp(2.2rem, 5vw, 5rem);
-  bottom: .55rem;
-  width: clamp(8.8rem, 15vw, 12.5rem);
-  height: clamp(11.5rem, 18vw, 15rem);
+  right: clamp(2rem, 4.5vw, 4.5rem);
+  bottom: .25rem;
+  width: clamp(10rem, 18vw, 15rem);
+  height: clamp(13rem, 21vw, 17rem);
   aspect-ratio: auto;
   border-radius: 0;
-  background: #282638;
-  box-shadow: 0 .8rem 1.8rem rgb(45 36 59 / 18%);
-  opacity: .98;
-  clip-path: polygon(
-    42% 11%, 28% 0, 29% 22%,
-    18% 29%, 15% 40%, 18% 50%, 24% 56%,
-    18% 65%, 13% 79%, 17% 95%,
-    35% 100%, 58% 100%, 71% 94%,
-    78% 80%, 78% 68%, 86% 60%, 94% 57%,
-    100% 62%, 95% 67%, 87% 67%, 80% 64%,
-    76% 56%, 70% 51%, 74% 40%, 71% 29%,
-    63% 22%, 64% 0, 52% 11%
-  );
+  background: url('/starry-love-diary-official-site/assets/final-black-cat.webp') center bottom / contain no-repeat;
+  box-shadow: none;
+  opacity: 1;
+  clip-path: none;
+  filter: drop-shadow(0 .8rem 1.2rem rgb(66 48 92 / 14%));
 }
 
 @media (max-width: 760px) {
   .download-callout {
     min-height: 20rem;
-    padding-right: clamp(8.5rem, 34vw, 12rem) !important;
+    padding-right: clamp(9rem, 36vw, 13rem) !important;
   }
   .download-callout::before {
     right: 3.7rem;
     font-size: 2rem;
   }
   .download-callout::after {
-    right: 1.5rem;
-    width: clamp(7rem, 28vw, 9rem);
-    height: clamp(9.5rem, 37vw, 12rem);
+    right: .8rem;
+    width: clamp(8.5rem, 34vw, 11rem);
+    height: clamp(11rem, 42vw, 14rem);
   }
 }
 
 @media (max-width: 430px) {
   .download-callout {
     min-height: 23rem;
-    padding: 2.4rem 7.6rem 2.4rem 1.35rem !important;
+    padding: 2.4rem 8.2rem 2.4rem 1.35rem !important;
   }
   .download-callout h2 {
     font-size: clamp(1.8rem, 9vw, 2.35rem);
@@ -69,9 +61,9 @@
     font-size: 1.55rem;
   }
   .download-callout::after {
-    right: .55rem;
-    bottom: .3rem;
-    width: 6.8rem;
-    height: 9.2rem;
+    right: .15rem;
+    bottom: .15rem;
+    width: 7.8rem;
+    height: 10.4rem;
   }
 }
