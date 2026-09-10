@@ -4,73 +4,148 @@
   --brand-lavender: #e8e2ff;
   --brand-berry: #e85c8d;
   --brand-night: #504a84;
+  --brand-night-deep: #343052;
   --brand-gold: #f4c86a;
 }
 
-/* Brand-art pass: use the app's own artwork and UI references instead of geometric CSS characters. */
-.hero-art {
-  min-height: 31rem;
+/* Visual V3 — Artistic Storybook Style */
+body {
   background:
-    linear-gradient(180deg, rgb(57 48 91 / 6%), rgb(57 48 91 / 16%)),
-    url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/today/today-hero-couple-garden-cat-v1.png') center / cover no-repeat;
-  border: 10px solid rgb(255 255 255 / 72%);
-  box-shadow: 0 1.8rem 4rem rgb(82 65 111 / 22%);
+    radial-gradient(circle at 88% 7%, rgb(220 211 255 / 58%), transparent 22rem),
+    radial-gradient(circle at 8% 30%, rgb(250 211 228 / 42%), transparent 25rem),
+    linear-gradient(180deg, #fffaf6 0%, #fff8f4 48%, #fdf8ff 100%);
 }
-.hero-art::before { opacity: .22; }
+
+.site-header {
+  background: rgb(255 249 247 / 88%);
+  border-bottom-color: rgb(232 92 141 / 12%);
+  box-shadow: 0 .5rem 2rem rgb(70 51 92 / 6%);
+}
+.brand > span:first-child { color: var(--brand-gold); text-shadow: 0 .15rem .6rem rgb(244 200 106 / 45%); }
+
+.hero { position: relative; }
+.hero::before,
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  content: '✦';
+  font-size: clamp(2rem, 5vw, 4.5rem);
+}
+.hero::before { top: 13%; left: -3%; color: rgb(232 92 141 / 22%); }
+.hero::after { right: -2%; bottom: 12%; color: rgb(244 200 106 / 38%); }
+.hero__copy { position: relative; z-index: 2; }
+.hero__copy::before {
+  position: absolute;
+  z-index: -1;
+  inset: -2rem -2rem -2rem -3rem;
+  border-radius: 2.4rem;
+  background: linear-gradient(120deg, rgb(255 255 255 / 72%), rgb(255 248 252 / 34%));
+  content: '';
+  filter: blur(.1px);
+}
+.hero__whisper {
+  max-width: 33rem !important;
+  margin-top: 1.4rem !important;
+  padding: .9rem 1.1rem;
+  border-left: 3px solid rgb(232 92 141 / 35%);
+  color: #78586f !important;
+  font-family: "Noto Serif TC", Georgia, serif;
+  font-size: .96rem !important;
+  font-style: italic;
+}
+.hero-art {
+  min-height: 35rem;
+  background:
+    linear-gradient(180deg, rgb(57 48 91 / 1%), rgb(57 48 91 / 11%)),
+    url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/today/today-hero-couple-garden-cat-v1.png') center / cover no-repeat;
+  border: 10px solid rgb(255 255 255 / 80%);
+  border-radius: 2.8rem;
+  box-shadow: 0 2rem 4.8rem rgb(82 65 111 / 25%), 0 0 0 1px rgb(232 92 141 / 8%);
+}
+.hero-art::before {
+  opacity: .2;
+  background-image:
+    radial-gradient(circle at 18% 16%, rgb(255 239 177 / 78%) 0 .16rem, transparent .22rem),
+    radial-gradient(circle at 76% 12%, rgb(255 255 255 / 82%) 0 .1rem, transparent .16rem),
+    radial-gradient(circle at 85% 38%, rgb(255 239 177 / 72%) 0 .12rem, transparent .19rem),
+    radial-gradient(circle at 15% 70%, rgb(255 255 255 / 76%) 0 .11rem, transparent .18rem);
+}
 .hero-art > * { display: none !important; }
 .hero-art::after {
   position: absolute;
-  inset: auto 1.1rem 1.1rem auto;
-  width: 4.6rem;
+  inset: auto 1.15rem 1.15rem auto;
+  width: 5.4rem;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(255 239 177 / 52%), transparent 68%);
+  background: radial-gradient(circle, rgb(255 239 177 / 58%), transparent 68%);
   content: '';
   filter: blur(2px);
 }
 
 .philosophy {
-  background: linear-gradient(120deg, #554f86 0%, #8874a3 45%, #e9a8ba 100%);
+  background: linear-gradient(120deg, #514b82 0%, #85709f 43%, #e6a5b8 100%);
+  box-shadow: 0 1.8rem 3.8rem rgb(82 65 111 / 18%);
+}
+.philosophy::before {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: rgb(255 241 185 / 65%);
+  content: '✦  ✧  ·  ✦';
+  font-size: 1.2rem;
+  letter-spacing: .5rem;
 }
 .philosophy__scenery {
-  min-height: 20rem;
+  min-height: 21rem;
   background:
-    linear-gradient(180deg, rgb(49 43 83 / 10%), rgb(49 43 83 / 26%)),
+    linear-gradient(180deg, rgb(49 43 83 / 5%), rgb(49 43 83 / 22%)),
     url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/our/our-hero-memory-wall-v1.png') center / cover no-repeat;
-  border-color: rgb(255 255 255 / 34%);
-  box-shadow: 0 1rem 2.1rem rgb(38 30 67 / 18%);
+  border-color: rgb(255 255 255 / 38%);
+  box-shadow: 0 1rem 2.1rem rgb(38 30 67 / 20%);
 }
 .philosophy__scenery > * { display: none !important; }
 
-.feature-grid {
-  align-items: stretch;
+#features { position: relative; }
+#features::before {
+  position: absolute;
+  top: 3rem;
+  right: 1.5rem;
+  color: rgb(244 200 106 / 46%);
+  content: '✦  ·  ✧';
+  font-size: 1.7rem;
+  letter-spacing: .55rem;
 }
+.feature-grid { align-items: stretch; gap: 1rem; }
 .feature-card {
   position: relative;
   overflow: hidden;
-  padding-top: 11.5rem !important;
+  padding-top: 10.1rem !important;
   isolation: isolate;
+  border-color: rgb(92 75 126 / 8%);
+  box-shadow: 0 .9rem 2rem rgb(75 57 103 / 10%);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 1.2rem 2.5rem rgb(75 57 103 / 15%); }
 .feature-card::before {
   position: absolute;
   z-index: -1;
   top: 0;
   right: 0;
   left: 0;
-  height: 10rem;
+  height: 8.9rem;
   background-position: center top;
   background-size: cover;
   content: '';
-  filter: saturate(.94) brightness(1.03);
+  filter: saturate(.96) brightness(1.035);
 }
 .feature-card::after {
   position: absolute;
   z-index: -1;
-  top: 7.2rem;
+  top: 6.1rem;
   right: 0;
   left: 0;
   height: 3.2rem;
-  background: linear-gradient(180deg, transparent, var(--card-bg, #fff9f4) 80%);
+  background: linear-gradient(180deg, transparent, var(--card-bg, #fff9f4) 84%);
   content: '';
 }
 .feature-card:nth-child(1)::before { background-image: url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/01-today.png'); }
@@ -80,42 +155,144 @@
 .feature-card:nth-child(5)::before { background-image: url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/05-clear.png'); }
 .feature-card__icon {
   position: absolute;
-  top: 8.25rem;
+  top: 7rem;
   left: 1.35rem;
   z-index: 2;
   box-shadow: 0 .45rem 1rem rgb(67 51 95 / 14%);
 }
 
+.signatures { position: relative; }
+.signatures::before {
+  position: absolute;
+  z-index: -1;
+  top: 18%;
+  left: -6rem;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(249 210 226 / 48%), transparent 68%);
+  content: '';
+}
+.signatures::after {
+  position: absolute;
+  z-index: -1;
+  right: -5rem;
+  bottom: 8%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(224 215 255 / 46%), transparent 68%);
+  content: '';
+}
+.signature-feature {
+  border: 1px solid rgb(232 92 141 / 13%);
+  box-shadow: 0 1.2rem 2.8rem rgb(73 55 102 / 9%);
+}
+.signature-feature--alternate { border-color: rgb(140 122 230 / 15%); }
 .signature-art {
   overflow: hidden;
   background-position: center;
   background-size: cover;
-  box-shadow: 0 1.25rem 2.4rem rgb(73 55 102 / 16%);
+  border: .52rem solid rgb(255 255 255 / 67%);
+  box-shadow: 0 1.25rem 2.4rem rgb(73 55 102 / 17%);
+  transform: rotate(-1.25deg);
 }
+.signature-feature--alternate .signature-art { transform: rotate(1.25deg); }
 .signature-art--reveal {
   background-image:
-    linear-gradient(180deg, rgb(255 238 245 / 12%), rgb(106 72 118 / 14%)),
+    linear-gradient(180deg, rgb(255 238 245 / 4%), rgb(106 72 118 / 9%)),
     url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/today/today-hero-couple-garden-cat-v1.png');
 }
 .signature-art--card {
   background-image:
-    linear-gradient(180deg, rgb(237 232 255 / 4%), rgb(78 72 128 / 14%)),
+    linear-gradient(180deg, rgb(237 232 255 / 2%), rgb(78 72 128 / 9%)),
     url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/our/our-hero-memory-wall-v1.png');
 }
 .signature-art > * { opacity: 0; }
-.signature-feature {
-  border: 1px solid rgb(232 92 141 / 12%);
+
+.storybook-break {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, .8fr);
+  align-items: stretch;
+  gap: 0;
+  min-height: 29rem;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 48%);
+  border-radius: 2.7rem;
+  background: linear-gradient(120deg, #504a84, #7d6b9f 45%, #d99eb7);
+  color: white;
+  box-shadow: 0 1.8rem 4rem rgb(68 53 97 / 18%);
 }
-.signature-feature--alternate {
-  border-color: rgb(140 122 230 / 14%);
+.storybook-break::after {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.6rem;
+  color: rgb(255 240 177 / 78%);
+  content: '✦  ✧  ✦';
+  font-size: 1.4rem;
+  letter-spacing: .55rem;
 }
+.storybook-break__art {
+  min-height: 29rem;
+  background:
+    linear-gradient(90deg, transparent 56%, rgb(80 74 132 / 38%) 100%),
+    linear-gradient(180deg, rgb(57 48 91 / 4%), rgb(57 48 91 / 20%)),
+    url('https://raw.githubusercontent.com/r91628120/starry-love-diary/main/design/ui-reference/today/today-hero-couple-garden-cat-v1.png') center / cover no-repeat;
+}
+.storybook-break__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.2rem, 5vw, 4.8rem);
+  background: linear-gradient(120deg, rgb(77 66 122 / 72%), rgb(115 87 136 / 42%));
+  backdrop-filter: blur(.25rem);
+}
+.storybook-break__copy .eyebrow { color: #ffe3a1; }
+.storybook-break__copy h2 { color: #fffdfb; font-size: clamp(2rem, 4vw, 3.2rem); }
+.storybook-break__copy p { color: rgb(255 250 248 / 92%); }
+.storybook-break__copy span {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: .65rem 1rem;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff7d9;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.how-to-use {
+  width: min(100% - 3rem, 76rem);
+  padding: clamp(3.6rem, 6vw, 5.7rem) clamp(3.4rem, 7vw, 6.8rem) !important;
+  border-radius: 2.5rem;
+  background:
+    radial-gradient(circle at 94% 10%, rgb(232 92 141 / 10%), transparent 15rem),
+    linear-gradient(145deg, rgb(255 239 245 / 94%), rgb(255 250 247 / 96%));
+  box-shadow: inset 0 0 0 1px rgb(232 92 141 / 7%), 0 1rem 2.8rem rgb(84 61 98 / 6%);
+}
+.how-to-use h2 { max-width: 52rem; }
+.how-to-use ol { max-width: 50rem; margin-inline: 0; }
+.how-to-use li { padding-right: clamp(1rem, 3vw, 2rem); }
 
 .download-callout {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 90% 15%, rgb(244 200 106 / 30%), transparent 16rem),
-    linear-gradient(120deg, #fff2f6, #f0ebff);
+    radial-gradient(circle at 88% 18%, rgb(244 200 106 / 34%), transparent 15rem),
+    radial-gradient(circle at 75% 85%, rgb(221 210 255 / 55%), transparent 18rem),
+    linear-gradient(120deg, #fff1f6, #f0ebff);
+}
+.download-callout::before {
+  position: absolute;
+  top: 1rem;
+  right: 9rem;
+  color: rgb(244 200 106 / 72%);
+  content: '✦';
+  font-size: 4rem;
 }
 .download-callout::after {
   position: absolute;
@@ -130,19 +307,67 @@
   box-shadow: 0 .6rem 1.4rem rgb(45 36 59 / 18%);
 }
 
+.site-footer {
+  background: linear-gradient(180deg, #464166 0%, #3b3759 100%);
+}
+
+@media (max-width: 900px) {
+  .hero { gap: 2.25rem; }
+  .hero-art { min-height: 29rem; }
+  .storybook-break { grid-template-columns: 1fr; }
+  .storybook-break__art { min-height: 23rem; background-position: center 38%; }
+  .how-to-use { padding-inline: clamp(2.2rem, 6vw, 4rem) !important; }
+}
+
 @media (max-width: 760px) {
-  .hero-art { min-height: 25rem; border-width: 7px; }
-  .feature-card { padding-top: 10.4rem !important; }
-  .feature-card::before { height: 9rem; }
-  .feature-card::after { top: 6.4rem; }
-  .feature-card__icon { top: 7.25rem; }
-  .philosophy__scenery { min-height: 16.5rem; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 2.8rem; }
+  .hero__copy { max-width: 38rem; }
+  .hero__copy::before { inset: -1rem; border-radius: 1.6rem; }
+  .hero__actions { gap: .65rem; }
+  .hero__actions .button { flex: 1 1 12rem; }
+  .hero-art { min-height: 25rem; border-width: 7px; background-position: 50% 38%; }
+  .philosophy { grid-template-columns: 1fr; padding-inline: 1.4rem; }
+  .philosophy__scenery { min-height: 17rem; }
+  .feature-card { padding-top: 9.7rem !important; }
+  .feature-card::before { height: 8.4rem; }
+  .feature-card::after { top: 5.8rem; }
+  .feature-card__icon { top: 6.55rem; }
+  .signature-art,
+  .signature-feature--alternate .signature-art { transform: none; }
+  .storybook-break { width: min(100% - 2rem, 76rem); border-radius: 2rem; }
+  .storybook-break__art { min-height: 20rem; background-position: center 34%; }
+  .storybook-break__copy { padding: 2rem 1.5rem 2.4rem; }
+  .storybook-break__copy span { font-size: .88rem; }
+  .how-to-use {
+    width: min(100% - 2rem, 76rem);
+    padding: 3rem 1.5rem !important;
+    border-radius: 2rem;
+  }
+  .download-callout::before { right: 5rem; font-size: 3rem; }
 }
 
 @media (max-width: 390px) {
-  .hero-art { min-height: 21rem; border-radius: 1.8rem; }
-  .feature-card { padding-top: 9.7rem !important; }
-  .feature-card::before { height: 8.35rem; }
-  .feature-card::after { top: 5.85rem; }
-  .feature-card__icon { top: 6.65rem; }
+  .hero { padding-top: 2.1rem; }
+  .hero-art { min-height: 21rem; border-radius: 1.8rem; background-position: 50% 35%; }
+  .hero__actions { display: grid; grid-template-columns: 1fr; }
+  .hero__actions .button { width: 100%; }
+  .hero__whisper { font-size: .9rem !important; }
+  .feature-card { padding-top: 9.2rem !important; }
+  .feature-card::before { height: 7.95rem; }
+  .feature-card::after { top: 5.45rem; }
+  .feature-card__icon { top: 6.15rem; }
+  .philosophy__scenery { min-height: 15rem; background-position: center 35%; }
+  .storybook-break { width: calc(100% - 1.5rem); border-radius: 1.65rem; }
+  .storybook-break__art { min-height: 17.5rem; }
+  .storybook-break__copy { padding: 1.7rem 1.15rem 2rem; }
+  .storybook-break__copy h2 { font-size: 1.8rem; }
+  .storybook-break__copy span { display: block; border-radius: 1rem; line-height: 1.6; }
+  .how-to-use { width: calc(100% - 1.5rem); padding: 2.5rem 1.2rem !important; border-radius: 1.65rem; }
+  .how-to-use ol { padding-left: 0; }
+  .download-callout::before { opacity: .5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card { transition: none; }
+  .feature-card:hover { transform: none; }
 }
