@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>星星戀愛日記｜Visual V2 Preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #fff9f4; font-family: system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+    body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+    .preview-bar { min-height: 46px; display: flex; align-items: center; justify-content: center; gap: .7rem; padding: .55rem 1rem; background: #423d6d; color: #fff; font-size: 14px; text-align: center; box-shadow: 0 2px 10px rgb(41 35 74 / 18%); z-index: 10; }
+    .preview-bar strong { color: #ffd9e7; }
+    .preview-bar a { color: #fff; text-underline-offset: 3px; }
+    #site-preview { width: 100%; height: 100%; border: 0; background: #fff9f4; }
+    .status { opacity: .82; }
+    @media (max-width: 520px) {
+      .preview-bar { min-height: 52px; flex-wrap: wrap; gap: .25rem .6rem; padding: .45rem .7rem; font-size: 12px; line-height: 1.35; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-bar">
+    <strong>Visual V2 預覽</strong>
+    <span class="status" id="status">載入改版樣式中…</span>
+    <a href="./" target="_blank" rel="noopener">開啟目前正式版</a>
+  </div>
+  <iframe id="site-preview" title="星星戀愛日記 Visual V2 預覽" src="./"></iframe>
+  <script>
+    const frame = document.getElementById('site-preview');
+    const status = document.getElementById('status');
+    const cssUrl = 'https://raw.githubusercontent.com/r91628120/starry-love-diary/does-not-exist';
+    const previewCssUrl = 'https://raw.githubusercontent.com/r91628120/starry-love-diary-official-site/visual-v2-polish/src/styles/brand-art.css';
+
+    frame.addEventListener('load', async () => {
+      try {
+        const response = await fetch(previewCssUrl, { cache: 'no-store' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const css = await response.text();
+        const doc = frame.contentDocument;
+        const style = doc.createElement('style');
+        style.id = 'visual-v2-preview-style';
+        style.textContent = css;
+        doc.head.appendChild(style);
+        status.textContent = 'PR #1 改版樣式已套用';
+      } catch (error) {
+        console.error(error);
+        status.textContent = '預覽樣式載入失敗，請重新整理';
+      }
+    });
+  </script>
+</body>
+</html>
