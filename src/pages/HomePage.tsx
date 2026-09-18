@@ -1,47 +1,57 @@
-import { FeatureCard } from '../components/FeatureCard'
-import { SignatureFeature } from '../components/SignatureFeature'
-import { siteContent } from '../content/zh-TW'
+import { pageLink, useTranslation } from '../content/i18n'
+import { StoreButtons } from '../components/StoreButtons'
+
+const base = import.meta.env.BASE_URL
+const spaceSymbols = ['☀', '☾', '⌁', '✧', '♡']
 
 export function HomePage() {
-  const { hero, philosophy, features, signatures, scoreRules, howToUse, faqs } = siteContent
+  const { t, locale } = useTranslation()
   return <>
-    <section className="hero section" id="top">
-      <div className="hero__copy">
-        <p className="eyebrow">{siteContent.brand.en}</p>
-        <h1>{hero.title}</h1>
-        <h2>{hero.subtitle}</h2>
-        <p>{hero.body}</p>
-        <div className="hero__actions"><a className="button button--primary" href="#philosophy">{hero.primary}</a><a className="button button--secondary" href="#features">{hero.secondary}</a></div>
-        <span className="coming-soon">✦ App {hero.comingSoon}</span>
-        <p className="hero__whisper">喜歡一個人沒有錯，只是別在喜歡他的時候，把自己弄丟了。</p>
+    <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="hero-atmosphere" style={{ backgroundImage: `url(${base}assets/starry-night-hero.webp)` }} aria-hidden="true" />
+      <img className="hero-image" src={`${base}assets/starry-night-hero.webp`} width="941" height="1672" alt="" fetchPriority="high" />
+      <div className="hero-shade" aria-hidden="true" />
+      <div className="hero-copy">
+        <p className="eyebrow">STARRY LOVE DIARY <span aria-hidden="true">✦</span></p>
+        <h1 id="hero-title">{t.hero.title}</h1>
+        <p className="hero-intro">{t.hero.body}</p>
+        <StoreButtons />
       </div>
-      <HeroArtwork />
+      <a className="hero-scroll" href="#story">{t.hero.explore}<span aria-hidden="true">↓</span></a>
     </section>
-
-    <section className="section philosophy" id="philosophy">
-      <div className="philosophy__scenery" aria-hidden="true"><span className="philosophy__moon">☾</span><span className="philosophy__skyline" /><span className="philosophy__pair">● ●</span><span className="philosophy__cat">⌁</span></div>
-      <div className="philosophy__copy"><p className="eyebrow">給喜歡著某個人的你</p><h2>{philosophy.title}</h2><p>{philosophy.body}</p><p>{philosophy.answer}</p><ul className="philosophy__highlights">{philosophy.highlights.map((item) => <li key={item}>{item}</li>)}</ul></div>
+    <section className="section letter" id="story" aria-labelledby="story-title">
+      <span className="section-star" aria-hidden="true">✧</span>
+      <p className="section-number" aria-hidden="true">01 / 07</p>
+      <h2 id="story-title">{t.story.title}</h2>
+      <div className="letter-body">{t.story.paragraphs.map((p) => <p key={p}>{p}</p>)}</div>
+      <p className="letter-closing">{t.story.closing}</p>
+      <span className="fine-line" aria-hidden="true" />
     </section>
-
-    <section className="section" id="features"><p className="eyebrow">五個頁面</p><h2>每一天，都有一個可以回來的地方。</h2><div className="feature-grid">{features.map((feature) => <FeatureCard key={feature.title} {...feature} />)}</div></section>
-
-    <section className="section signatures"><p className="eyebrow">兩個特別的收藏方式</p><h2>把想留下的心意，好好收起來。</h2>{signatures.map((feature, index) => <SignatureFeature key={feature.title} {...feature} alternate={index % 2 === 1} />)}</section>
-
-    <section className="storybook-break section" aria-label="星星戀愛日記的故事">
-      <div className="storybook-break__art" aria-hidden="true" />
-      <div className="storybook-break__copy"><p className="eyebrow">Artistic Storybook Style</p><h2>在某個平凡的日子裡，也為自己留一點溫柔。</h2><p>你可以喜歡一個人，也可以期待、想念、猜測與不安。這本日記不替你回答愛情，只陪你把心動記下來，再慢慢把注意力帶回自己。</p><span>記錄 · 觀察 · 理解 · 回到自己</span></div>
+    <section className="spaces-wrap" id="spaces" aria-labelledby="spaces-title"><div className="section">
+      <p className="section-number" aria-hidden="true">02 / 07</p><h2 id="spaces-title">{t.spaces.title}</h2>
+      <div className="space-grid">{t.spaces.items.map((space, index) => <article className={`space-card space-card--${index}`} key={index}>
+        <div className="space-card-top"><span className="space-symbol" aria-hidden="true">{spaceSymbols[index]}</span><span className="space-number" aria-hidden="true">0{index + 1}</span></div>
+        {space.image && <img className="space-screenshot" loading="lazy" src={`${base}${space.image}`} alt={space.imageAlt ?? ''} />}
+        <h3>{space.title}</h3><p>{space.body}</p>
+      </article>)}</div>
+    </div></section>
+    <section className="clarity section" id="clarity" aria-labelledby="clarity-title">
+      <div className="clarity-copy"><p className="section-number" aria-hidden="true">03 / 07</p><h2 id="clarity-title">{t.clarity.title}</h2><p className="statement">{t.clarity.statement}</p><p>{t.clarity.body}</p><div className="clarity-words">{t.clarity.words.map((word) => <span key={word}>{word}</span>)}</div></div>
+      <div className="thoughts"><span className="orbit-star" aria-hidden="true">✧</span><ul>{t.clarity.situations.map((s) => <li key={s}>{s}</li>)}</ul></div>
     </section>
-
-    <section className="section star-systems" id="star-systems"><div><p className="eyebrow">累積與收藏</p><h2>星心值是什麼？</h2><p>它只是使用 App、記錄自己與整理心情時，留下的累積足跡。不是愛情分數、不是對方愛你的程度，也不是關係成功率。</p><div className="score-table" role="table" aria-label="星心值規則">{scoreRules.map(([action, score]) => <div role="row" key={action}><span role="cell">{action}</span><strong role="cell">{score}</strong></div>)}</div></div><div className="star-bottle-copy"><h3>星星是怎麼來的？</h3><p><strong>心情星星：</strong>每天記錄心情時，建立當天的一顆心情星星。同一天改變心情，更新同一顆，不重複增加。</p><p><strong>清醒星星：</strong>完成清醒工具後，只有主動選擇「存成清醒星星」才建立。</p><p className="notice">星星數量不等於星心值分數；它們是兩個不同系統。</p></div></section>
-
-    <section className="section how-to-use" id="how-to-use"><p className="eyebrow">使用說明</p><h2>從今天開始，慢慢留下自己的路。</h2><ol>{howToUse.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span>{step}</li>)}</ol></section>
-
-    <section className="section faq" id="faq"><p className="eyebrow">常見問題</p><h2>想知道的事，都先放在這裡。</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
-
-    <section className="download-callout section"><div><p className="eyebrow">即將推出</p><h2>星星戀愛日記，即將與你見面。</h2><p>App Store · Coming soon / Google Play · Coming soon</p></div><img className="download-callout__cat" src={`${import.meta.env.BASE_URL}assets/final-black-cat.png`} alt="" aria-hidden="true" /></section>
+    <section className="daily" aria-labelledby="daily-title"><div className="section daily-inner">
+      <div className="star-orbit" aria-hidden="true"><span>✦</span><i /><b>✧</b></div>
+      <div><p className="section-number" aria-hidden="true">04 / 07</p><h2 id="daily-title">{t.daily.title}</h2><p className="statement">{t.daily.statement}</p><p>{t.daily.body}</p></div>
+    </div></section>
+    <section className="section companion" aria-labelledby="cat-title">
+      <div className="cat-portrait"><img src={`${base}assets/final-black-cat.webp`} alt={t.cat.alt} loading="lazy" width="700" height="692" /></div>
+      <div><p className="section-number" aria-hidden="true">05 / 07</p><h2 id="cat-title">{t.cat.title}</h2><p>{t.cat.body}</p></div>
+    </section>
+    <section className="privacy section" id="privacy" aria-labelledby="privacy-title">
+      <div className="privacy-symbol" aria-hidden="true">♡</div><p className="section-number" aria-hidden="true">06 / 07</p><h2 id="privacy-title">{t.privacy.title}</h2><p>{t.privacy.body}</p><a className="text-link" href={pageLink('privacy.html', locale)}>{t.legal.privacy}<span aria-hidden="true"> ↗</span></a>
+    </section>
+    <section className="final-cta" aria-labelledby="final-title"><div className="section">
+      <p className="section-number" aria-hidden="true">07 / 07</p><span className="section-star" aria-hidden="true">✦</span><h2 id="final-title">{t.hero.title}</h2><p>{t.final.body}</p><StoreButtons /><p className="final-brand">{t.brand}<small>STARRY LOVE DIARY</small></p>
+    </div></section>
   </>
-}
-
-function HeroArtwork() {
-  return <div className="hero-art" aria-hidden="true"><span className="hero-art__moon">☾</span><span className="hero-art__window" /><div className="hero-art__person hero-art__person--boy"><i /><b /></div><div className="hero-art__person hero-art__person--girl"><i /><b /></div><div className="hero-art__phone"><span className="hero-art__notebook" /><span className="hero-art__star">✦</span></div><div className="hero-art__cat"><i /><i /><b>● ●</b><em>⌣</em></div><span className="hero-art__sparkles">✦ · ✧ · ✦</span></div>
 }

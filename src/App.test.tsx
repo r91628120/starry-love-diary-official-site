@@ -1,38 +1,109 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { App } from './App'
+import { locales, storageKey, translations } from './content/i18n'
 
-describe('Official site V1', () => {
-  afterEach(cleanup)
-  it('renders the hero, five feature sections, signature features, rules, and FAQ', () => {
+beforeEach(() => {
+  localStorage.clear()
+  window.history.replaceState(null, '', '/')
+  document.head.innerHTML = '<meta name="description"><meta property="og:title"><meta property="og:description"><meta property="og:locale"><meta name="twitter:title"><meta name="twitter:description">'
+})
+afterEach(() => { cleanup(); vi.restoreAllMocks() })
+
+describe('Multilingual official website', () => {
+  it.each(locales)('renders eight complete sections and honest store states in %s', (locale) => {
+    window.history.replaceState(null, '', '/?lang=' + locale)
     render(<App page="home" />)
-    expect(screen.getByRole('heading', { level: 1, name: '星星戀愛日記' })).toBeInTheDocument()
-    expect(document.querySelector('.hero-art')).toHaveAttribute('aria-hidden', 'true')
-    for (const feature of ['今天', '星星瓶', '足跡', '我們', '清醒']) expect(screen.getByRole('heading', { level: 3, name: feature })).toBeInTheDocument()
-    for (const tool of ['開始整理心情', '暈船法典', '戀愛腦檢測', '喜歡？習慣？']) expect(screen.getAllByText(tool).length).toBeGreaterThan(0)
-    expect(screen.getByRole('heading', { name: '七句心話・照片顯影' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: '想對你說・星星心意卡' })).toBeInTheDocument()
-    for (const rule of ['+1', '+7', '+2', '+5', '+10']) expect(screen.getByText(rule)).toBeInTheDocument()
-    expect(screen.getByText(/不是愛情分數/)).toBeInTheDocument()
-    expect(screen.getByText(/兩個不同系統/)).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: '想知道的事，都先放在這裡。' })).toBeInTheDocument()
+    const t = translations[locale]
+    expect(document.documentElement.lang).toBe(locale)
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+    expect(document.querySelector('h1')?.textContent).toBe(t.hero.title)
+    expect(document.querySelectorAll('main > section')).toHaveLength(8)
+    for (const title of [t.story.title, t.spaces.title, t.clarity.title, t.daily.title, t.cat.title, t.privacy.title]) {
+      expect(screen.getByRole('heading', { name: title.replaceAll('\n', ' ') })).toBeInTheDocument()
+    }
+    for (const item of t.spaces.items) expect(screen.getByRole('heading', { name: item.title, level: 3 })).toBeInTheDocument()
+    expect(screen.getAllByText(t.comingSoon)).toHaveLength(4)
+    expect(screen.getAllByText('App Store')).toHaveLength(2)
+    expect(screen.getAllByText('Google Play')).toHaveLength(2)
+    expect(screen.queryByRole('link', { name: /App Store|Google Play/ })).not.toBeInTheDocument()
+    expect(document.querySelector('.hero-image')).toHaveAttribute('fetchpriority', 'high')
+    expect(document.querySelector('.hero-image')).toHaveAttribute('alt', '')
+    expect(document.querySelector('.hero-image')).not.toHaveAttribute('loading', 'lazy')
+    expect(document.body.innerHTML).not.toMatch(/testflight|qa-12|beta tester/i)
+    expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', t.hero.body.replaceAll('\n', ' '))
+    expect(document.title).toContain(t.hero.title.replaceAll('\n', ' '))
   })
 
-  it('renders legal placeholders without fake external links or company information', () => {
-    render(<App page="privacy" />)
-    expect(screen.getByRole('heading', { level: 1, name: '隱私政策' })).toBeInTheDocument()
-    expect(screen.getByText(/正式隱私政策將於 App 正式發布前公布/)).toBeInTheDocument()
+  it('switches all locales through the header and persists a choice across remounts', () => {
+    const view = render(<App page="home" />)
+    for (const locale of locales) {
+      fireEvent.change(document.getElementById('header-language')!, { target: { value: locale } })
+      expect(document.querySelector('h1')?.textContent).toBe(translations[locale].hero.title)
+      expect(document.getElementById('footer-language')).toHaveValue(locale)
+      expect(localStorage.getItem(storageKey)).toBe(locale)
+      expect(new URLSearchParams(window.location.search).get('lang')).toBe(locale)
+    }
+    view.unmount()
+    window.history.replaceState(null, '', '/')
+    render(<App page="home" />)
+    expect(document.querySelector('h1')?.textContent).toBe(translations.fr.hero.title)
+  })
+
+  it('switches through the footer and carries language into legal links', () => {
+    render(<App page="home" />)
+    fireEvent.change(document.getElementById('footer-language')!, { target: { value: 'es' } })
+    expect(document.getElementById('header-language')).toHaveValue('es')
+    expect(screen.getAllByRole('link', { name: translations.es.legal.privacy })[0]).toHaveAttribute('href', expect.stringContaining('privacy.html?lang=es'))
+  })
+
+  it('prefers explicit locale links over a saved preference', () => {
+    localStorage.setItem(storageKey, 'fr')
+    window.history.replaceState(null, '', '/?lang=ja')
+    render(<App page="home" />)
+    expect(document.documentElement.lang).toBe('ja')
+  })
+
+  it('uses the source locale for invalid preferences', () => {
+    localStorage.setItem(storageKey, 'invalid')
+    window.history.replaceState(null, '', '/?lang=invalid')
+    render(<App page="home" />)
+    expect(document.documentElement.lang).toBe('zh-TW')
+  })
+
+  it('keeps language switching functional when storage is blocked', () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => { throw new Error('blocked') })
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('blocked') })
+    render(<App page="home" />)
+    fireEvent.change(document.getElementById('header-language')!, { target: { value: 'ko' } })
+    expect(document.documentElement.lang).toBe('ko')
+  })
+
+  it('opens, closes, and dismisses mobile navigation with Escape', () => {
+    render(<App page="home" />)
+    const toggle = screen.getByRole('button', { name: '開啟選單' })
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    fireEvent.click(toggle)
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    const nav = document.getElementById('site-navigation')!
+    fireEvent.keyDown(nav, { key: 'Escape' })
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(toggle).toHaveFocus()
+    fireEvent.click(toggle)
+    expect(within(nav).getByRole('link', { name: '五個空間' })).toHaveAttribute('href', '#spaces')
+    expect(screen.getByRole('link', { name: '跳至主要內容' })).toHaveAttribute('href', '#main-content')
+  })
+
+  it.each(locales)('preserves pending legal content in %s without inventing policies', (locale) => {
+    window.history.replaceState(null, '', '/?lang=' + locale)
+    const privacy = render(<App page="privacy" />)
+    expect(screen.getByRole('heading', { level: 1, name: translations[locale].legal.privacy })).toBeInTheDocument()
+    expect(screen.getByText(translations[locale].legal.privacyNotice)).toBeInTheDocument()
+    expect(document.querySelectorAll('.legal-sections article')).toHaveLength(6)
+    privacy.unmount()
     render(<App page="terms" />)
-    expect(screen.getByRole('heading', { level: 1, name: '使用條款' })).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: /app store|google play/i })).not.toBeInTheDocument()
-  })
-
-  it('keeps mobile menu semantics and a GitHub Pages-safe base configuration', async () => {
-    render(<App page="home" />)
-    const menu = screen.getByRole('button', { name: '開啟選單' })
-    expect(menu).toHaveAttribute('aria-expanded', 'false')
-    fireEvent.click(menu)
-    expect(menu).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByRole('navigation', { name: '主要導覽' })).toHaveAttribute('id', 'site-navigation')
+    expect(screen.getByRole('heading', { level: 1, name: translations[locale].legal.terms })).toBeInTheDocument()
+    expect(screen.getByText(translations[locale].legal.termsNotice)).toBeInTheDocument()
+    expect(document.querySelectorAll('.legal-sections article')).toHaveLength(7)
   })
 })

@@ -1,0 +1,22 @@
+import type { Translation } from '../types'
+
+export default {
+  brand: 'Starry Love Diary',
+  nav: { story: 'Para ti', spaces: 'Cinco espacios', privacy: 'Tu espacio', menu: 'Abrir menú', label: 'Navegación principal', skip: 'Ir al contenido', language: 'Elegir idioma' },
+  hero: { title: 'Quiere a alguien\nsin olvidarte de ti.', body: 'Guarda la ilusión y dale espacio a lo que no sabes cómo expresar.\nEntre amores secretos, señales confusas y emociones intensas,\nsigue descubriéndote mientras quieres a alguien.', explore: 'Conócenos, a tu ritmo' },
+  comingSoon: 'Próximamente',
+  story: { title: 'Para ti, que tienes a alguien en mente', paragraphs: ['Que alguien te guste puede ser precioso.\nY a veces, también agotador.', 'Esperar un mensaje, buscarle otro sentido a una frase.\nSonreír durante horas por una mirada\ny darle mil vueltas a una respuesta que no llega.', 'Starry Love Diary no quiere que dejes de sentir.', 'Solo quiere acompañarte a guardar esa ilusión\ny a ordenar lo que llevas dentro cuando lo necesites.'], closing: 'Que esa persona te importe. Y tú también.' },
+  spaces: { title: 'Cinco espacios para tu historia de amor', items: [
+    { title: 'Hoy', body: 'Tus emociones de hoy, tus fotos y esos pequeños momentos de ilusión. Todo empieza aquí.' },
+    { title: 'Claridad', body: 'Cuando no dejas de pensar en esa persona, esperas su mensaje o sientes que te estás implicando demasiado, distingue los hechos, las interpretaciones y lo que aún no sabes. Vuelve poco a poco a ti.' },
+    { title: 'Huellas', body: 'Conserva tu diario, tus fotos y las emociones del camino. Un día mirarás atrás y verás cuánto has avanzado.' },
+    { title: 'Frasco de estrellas', body: 'Guarda las emociones y los momentos de claridad que quieres conservar, estrella a estrella.' },
+    { title: 'Lo nuestro', body: 'Anota fechas importantes, momentos compartidos, sus gustos, sus pequeñas costumbres y esos detalles que siempre recuerdas.' },
+  ] },
+  clarity: { title: 'Cuando lo que sientes empieza a desbordarte…', statement: 'Conserva la ilusión. Dale una pausa a las vueltas.', situations: ['No dejo de pensar en esa persona.', 'Estoy esperando su mensaje.', 'Creo que me estoy implicando demasiado.', 'No sé si todavía me gusta.', 'No sé si encajamos.'], body: 'No hace falta encontrar todas las respuestas ahora.\n\nSepara con calma lo que pasó, lo que imaginas, lo que sientes y lo que necesitas. Quizá así puedas ver mejor qué te vendría bien en este momento.', words: ['Hechos', 'Interpretaciones', 'Lo desconocido', 'Tú'] },
+  daily: { title: 'Una pequeña estrella de palabras, solo para hoy', statement: 'Hay palabras que quieren encontrarte hoy.', body: 'Cada día, al abrir Starry Love Diary, te espera una frase sobre el amor para ese momento.\n\nSin prisas ni días pendientes.\nLa frase que encuentras hoy es un pequeño encuentro que solo pertenece a hoy.' },
+  cat: { title: 'Si no sabes a quién contarle lo que sientes, cuéntaselo al gato negro.', body: 'No te apura para que olvides a nadie.\nTampoco decide por ti a quién querer.\n\nSolo se queda a tu lado, en silencio,\nmientras vas entendiendo tu corazón.', alt: 'Un gato negro mira una estrella en silencio' },
+  privacy: { title: 'Tus sentimientos merecen su propio espacio', body: 'El amor puede ser muy íntimo.\nUn diario también debería serlo.\n\nStarry Love Diary valora tu espacio personal. Queremos que aquí puedas sentirte a gusto al guardar tus emociones y recuerdos.' },
+  final: { body: 'Escribe lo que te ilusiona.\nVuelve poco a poco a ti.' },
+  legal: { privacy: 'Política de privacidad', terms: 'Condiciones de uso', back: 'Volver al inicio', pending: 'El contenido completo estará disponible antes del lanzamiento de la app.', privacyNotice: 'La Política de privacidad oficial se publicará antes del lanzamiento de la app.', termsNotice: 'Las Condiciones de uso oficiales se publicarán antes del lanzamiento de la app.', privacySections: ['Almacenamiento de datos', 'Fotos', 'Funciones para compartir', 'Servicios de terceros', 'Contacto', 'Fecha de actualización'], termsSections: ['Ámbito de uso', 'Contenido del usuario', 'Limitaciones de funciones', 'Exención de responsabilidad', 'Propiedad intelectual', 'Actualizaciones de las condiciones', 'Contacto'] },
+} satisfies Translation

@@ -18,7 +18,7 @@ Vite 的 `base` 已設定為 `/starry-love-diary-official-site/`，可部署到 
 
 ## 語言
 
-V1 正式內容為繁體中文。文案集中於 `src/content/zh-TW.ts`，未來可在相同目錄新增英文、日文、韓文、西班牙文與法文內容後，再啟用語言切換。
+網站支援繁體中文、English、日本語、한국어、Español 與 Français。翻譯資源集中於 `src/content/locales/`，共用元件和版面由 `src/content/i18n.ts` 提供語言狀態；選擇會儲存在瀏覽器本機，且可使用 `?lang=zh-TW`、`?lang=en`、`?lang=ja`、`?lang=ko`、`?lang=es` 或 `?lang=fr` 建立可分享的語言網址。
 
 ## 結構
 
