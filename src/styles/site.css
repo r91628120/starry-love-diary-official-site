@@ -80,7 +80,7 @@ section[id] { scroll-margin-top: 24px; }
 .space-symbol { font-size: 2rem; color: #8b687c; }
 .space-number { font-size: .68rem; letter-spacing: .15em; color: #79677a; }
 .space-card p { color: #6b5d6b; font-size: .92rem; line-height: 1.9; margin: 0; }
-.space-screenshot { display: block; max-height: 320px; object-fit: contain; margin: 0 auto 25px; }
+.space-screenshot { display: block; width: auto; height: auto; max-width: 100%; max-height: 320px; object-fit: contain; margin: 0 auto 25px; border: 1px solid rgb(255 255 255 / 82%); border-radius: 14px; box-shadow: 0 .6rem 1.5rem rgb(80 58 83 / 12%); }
 .clarity { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .statement { color: #87566f; font-size: 1.18rem; font-family: Georgia, "Songti TC", serif; }
 .clarity-copy > p:not(.section-number) { max-width: 520px; }

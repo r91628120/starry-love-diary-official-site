@@ -23,6 +23,16 @@ describe('Multilingual official website', () => {
       expect(screen.getByRole('heading', { name: title.replaceAll('\n', ' ') })).toBeInTheDocument()
     }
     for (const item of t.spaces.items) expect(screen.getByRole('heading', { name: item.title, level: 3 })).toBeInTheDocument()
+    const spaceScreenshots = [...document.querySelectorAll<HTMLImageElement>('.space-screenshot')]
+    expect(spaceScreenshots).toHaveLength(5)
+    expect(spaceScreenshots.map((image) => image.getAttribute('src'))).toEqual([
+      '/starry-love-diary-official-site/assets/spaces/today.webp',
+      '/starry-love-diary-official-site/assets/spaces/clarity.webp',
+      '/starry-love-diary-official-site/assets/spaces/footprints.webp',
+      '/starry-love-diary-official-site/assets/spaces/star-bottle.webp',
+      '/starry-love-diary-official-site/assets/spaces/our.webp',
+    ])
+    expect(spaceScreenshots.map((image) => image.alt)).toEqual(t.spaces.items.map((item) => item.imageAlt))
     expect(screen.getAllByText(t.comingSoon)).toHaveLength(4)
     expect(screen.getAllByText('App Store')).toHaveLength(2)
     expect(screen.getAllByText('Google Play')).toHaveLength(2)
