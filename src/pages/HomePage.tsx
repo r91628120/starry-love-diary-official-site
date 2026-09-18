@@ -44,7 +44,7 @@ export function HomePage() {
       <div><p className="section-number" aria-hidden="true">04 / 07</p><h2 id="daily-title">{t.daily.title}</h2><p className="statement">{t.daily.statement}</p><p>{t.daily.body}</p></div>
     </div></section>
     <section className="section companion" aria-labelledby="cat-title">
-      <div className="cat-portrait"><img src={`${base}assets/final-black-cat.webp`} alt={t.cat.alt} loading="lazy" width="700" height="692" /></div>
+      <div className="cat-portrait"><img src={`${base}assets/final-black-cat.png`} alt={t.cat.alt} loading="lazy" width="1261" height="1247" /></div>
       <div><p className="section-number" aria-hidden="true">05 / 07</p><h2 id="cat-title">{t.cat.title}</h2><p>{t.cat.body}</p></div>
     </section>
     <section className="privacy section" id="privacy" aria-labelledby="privacy-title">
