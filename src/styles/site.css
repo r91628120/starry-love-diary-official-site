@@ -59,12 +59,13 @@ section[id] { scroll-margin-top: 24px; }
 .hero .eyebrow span { display: inline-block; margin-left: 18px; }
 .hero-intro { font-size: .98rem; max-width: 540px; color: #f4e9e8; line-height: 2; margin-bottom: 30px; }
 .store-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-.store-button-stack { display: grid; gap: 12px; min-width: 164px; }
+.store-button-stack { display: grid; flex: 0 0 164px; width: 164px; gap: 12px; }
 .store-button { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 62px; min-width: 164px; padding: 10px 22px; border: 1px solid #fff3e270; border-radius: 13px; background: #fff4e810; text-decoration: none; color: #fff6e7; line-height: 1.35; }
 .store-button:first-child { background: #fff3e9; border-color: #fff3e9; color: #35283e; }
 .store-button strong { display: block; font-size: .94rem; font-weight: 550; }
 .store-button small { display: block; margin-top: 4px; font-size: .67rem; letter-spacing: .02em; }
-.store-button--testflight { background: #382c4a; border-color: #e8c791a8; color: #fff4df; }
+.store-button--testflight { min-height: 52px; padding-block: 8px; background: #382c4a; border-color: #e8c791a8; color: #fff4df; }
+.store-button--testflight strong { font-size: .82rem; }
 .hero-scroll { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); text-align: center; font-size: .67rem; letter-spacing: .08em; text-decoration: none; text-shadow: 0 1px 8px #171221; width: max-content; max-width: 90%; }
 .hero-scroll span { display: block; font-size: 1.3rem; line-height: 1.6; }
 .letter { text-align: center; max-width: 760px; position: relative; }
@@ -199,10 +200,11 @@ section[id] { scroll-margin-top: 24px; }
   .hero .eyebrow { font-size: .57rem; letter-spacing: .17em; margin-bottom: 17px; }
   .hero-intro { font-size: .81rem; line-height: 1.95; margin-bottom: 22px; }
   .store-buttons { gap: 10px; }
-  .store-button-stack { min-width: 0; flex: 1 1 0; gap: 10px; }
+  .store-button-stack { flex: 1 1 0; width: auto; gap: 10px; }
   .store-button { min-width: 0; flex: 1 1 0; padding: 10px 12px; gap: 9px; min-height: 60px; }
   .store-button strong { font-size: .84rem; }
   .store-button small { font-size: .6rem; }
+  .store-button--testflight { min-height: 52px; }
   .hero-scroll { bottom: 17px; font-size: .6rem; }
   .section { padding-block: 65px; }
   h2 { font-size: 1.8rem; line-height: 1.5; }
