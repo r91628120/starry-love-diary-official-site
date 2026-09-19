@@ -41,8 +41,11 @@ describe('Multilingual official website', () => {
     expect(document.querySelector('.hero-image')).toHaveAttribute('alt', '')
     expect(document.querySelector('.hero-image')).not.toHaveAttribute('loading', 'lazy')
     expect(document.body.innerHTML).not.toMatch(/testflight|qa-12|beta tester/i)
-    expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', t.hero.body.replaceAll('\n', ' '))
-    expect(document.title).toContain(t.hero.title.replaceAll('\n', ' '))
+    const expectedSeo = locale === 'zh-TW'
+      ? { title: '星星戀愛日記｜戀愛日記、暈船整理與戀愛腦清醒 App', description: '星星戀愛日記是一款陪伴單戀、暗戀、曖昧與戀愛中情緒的戀愛日記 App。記錄心情、戀愛足跡與重要回憶，透過星星瓶與清醒工具整理暈船、等待訊息與戀愛腦帶來的內耗。' }
+      : { title: `${t.brand} | ${t.hero.title.replaceAll('\n', ' ')}`, description: t.hero.body.replaceAll('\n', ' ') }
+    expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', expectedSeo.description)
+    expect(document.title).toBe(expectedSeo.title)
   })
 
   it('switches all locales through the header and persists a choice across remounts', () => {

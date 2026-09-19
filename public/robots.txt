@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://r91628120.github.io/starry-love-diary-official-site/sitemap.xml
