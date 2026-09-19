@@ -37,15 +37,29 @@ describe('Multilingual official website', () => {
     expect(screen.getAllByText('App Store')).toHaveLength(2)
     expect(screen.getAllByText('Google Play')).toHaveLength(2)
     expect(screen.queryByRole('link', { name: /App Store|Google Play/ })).not.toBeInTheDocument()
+    const testFlightEntrances = screen.getAllByRole('link', { name: new RegExp(t.testFlight.entry) })
+    expect(testFlightEntrances).toHaveLength(2)
+    for (const entrance of testFlightEntrances) expect(entrance).toHaveAttribute('href', `/starry-love-diary-official-site/ios-testflight.html?lang=${locale}`)
     expect(document.querySelector('.hero-image')).toHaveAttribute('fetchpriority', 'high')
     expect(document.querySelector('.hero-image')).toHaveAttribute('alt', '')
     expect(document.querySelector('.hero-image')).not.toHaveAttribute('loading', 'lazy')
-    expect(document.body.innerHTML).not.toMatch(/testflight|qa-12|beta tester/i)
+    expect(document.body.innerHTML).not.toMatch(/qa-12|beta tester/i)
     const expectedSeo = locale === 'zh-TW'
       ? { title: '星星戀愛日記｜戀愛日記、暈船整理與戀愛腦清醒 App', description: '星星戀愛日記是一款陪伴單戀、暗戀、曖昧與戀愛中情緒的戀愛日記 App。記錄心情、戀愛足跡與重要回憶，透過星星瓶與清醒工具整理暈船、等待訊息與戀愛腦帶來的內耗。' }
       : { title: `${t.brand} | ${t.hero.title.replaceAll('\n', ' ')}`, description: t.hero.body.replaceAll('\n', ' ') }
     expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', expectedSeo.description)
     expect(document.title).toBe(expectedSeo.title)
+  })
+
+  it.each(locales)('renders the TestFlight onboarding page and its external links in %s', (locale) => {
+    window.history.replaceState(null, '', '/ios-testflight.html?lang=' + locale)
+    render(<App page="ios-testflight" />)
+    const t = translations[locale]
+    expect(document.documentElement.lang).toBe(locale)
+    expect(screen.getByRole('heading', { name: t.testFlight.title, level: 1 })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: t.testFlight.stepOneButton })).toHaveAttribute('href', 'https://apps.apple.com/tw/app/testflight/id899247664')
+    expect(screen.getByRole('link', { name: t.testFlight.stepTwoButton })).toHaveAttribute('href', 'https://testflight.apple.com/join/7bdTDFY4')
+    expect(screen.getByRole('link', { name: new RegExp(t.legal.back) })).toHaveAttribute('href', `/starry-love-diary-official-site/?lang=${locale}`)
   })
 
   it('switches all locales through the header and persists a choice across remounts', () => {

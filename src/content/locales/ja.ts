@@ -18,5 +18,6 @@ export default {
   cat: { title: '誰に話せばいいかわからない気持ちは、まず黒猫に話してみて。', body: '忘れなよ、と急かしたりしません。\n好きでいていいかを、決めたりもしません。\n\nあなたが自分の心を少しずつ知っていくそばで、\nただ静かに、一緒にいます。', alt: '星を静かに見つめる黒猫' },
   privacy: { title: 'あなたの気持ちに、あなただけの場所を', body: '恋は、とても個人的なもの。\n日記も、そうあってほしい。\n\n「星空恋日記」は、あなたのプライベートな空間を大切にします。\n安心して気持ちや思い出を綴れる場所でありたいと願っています。' },
   final: { body: 'ときめきを書き留めて。\n少しずつ、自分の心に帰ろう。' },
+  testFlight: { entry: '無料の iOS ベータ版に参加', entrySubtitle: 'TestFlight', title: '「星空恋日記」iOS ベータ版に参加', intro: '「星空恋日記」は現在テスト中です。以下の2つの手順で始められます。', stepOneTitle: '① 先に Apple TestFlight をインストール', stepOneBody: 'iPhone に TestFlight がない場合は、先に Apple 公式の TestFlight アプリをインストールしてください。', stepOneButton: 'Apple TestFlight をダウンロード', stepTwoTitle: '② 「星空恋日記」ベータ版に参加', stepTwoBody: 'インストール後、このページに戻ってから下のボタンを選び、テストに参加してください。', stepTwoButton: '「星空恋日記」ベータ版を開く', note: '「承認」を選んでから「インストール」を押すと、使い始められます。' },
   legal: { privacy: 'プライバシーポリシー', terms: '利用規約', back: 'ホームに戻る', pending: '正式な内容はアプリの公開前に掲載します。', privacyNotice: '正式なプライバシーポリシーはアプリの公開前に掲載します。', termsNotice: '正式な利用規約はアプリの公開前に掲載します。', privacySections: ['データの保存', '写真', '共有機能', '第三者サービス', 'お問い合わせ', 'ポリシー更新日'], termsSections: ['利用範囲', 'ユーザーコンテンツ', '機能の制限', '免責事項', '知的財産', '規約の変更', 'お問い合わせ'] },
 } satisfies Translation

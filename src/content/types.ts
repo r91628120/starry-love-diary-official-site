@@ -10,5 +10,6 @@ export interface Translation {
   cat: { title: string; body: string; alt: string }
   privacy: { title: string; body: string }
   final: { body: string }
+  testFlight: { entry: string; entrySubtitle: string; title: string; intro: string; stepOneTitle: string; stepOneBody: string; stepOneButton: string; stepTwoTitle: string; stepTwoBody: string; stepTwoButton: string; note: string }
   legal: { privacy: string; terms: string; back: string; pending: string; privacyNotice: string; termsNotice: string; privacySections: string[]; termsSections: string[] }
 }

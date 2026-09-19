@@ -18,5 +18,6 @@ export default {
   cat: { title: '有些心事，不知道跟誰說，就先告訴黑貓吧。', body: '牠不催你放下誰，\n也不替你決定該不該喜歡。\n\n牠只是安靜地陪著你，\n看你慢慢把自己的心弄明白。', alt: '安靜望著星星的黑貓' },
   privacy: { title: '你的心事，只屬於你', body: '戀愛可以很私密，\n日記更應該如此。\n\n《星星戀愛日記》重視你的私人空間。\n我們希望這裡是一個可以安心記錄心情與回憶的地方。' },
   final: { body: '把心動寫下來，\n把自己慢慢找回來。' },
+  testFlight: { entry: '免費加入 iOS 測試版', entrySubtitle: 'TestFlight', title: '加入《星星戀愛日記》iOS 測試版', intro: '《星星戀愛日記》目前仍在測試中。請依照以下兩個步驟開始體驗。', stepOneTitle: '① 先安裝 Apple TestFlight', stepOneBody: '如果你的 iPhone 還沒有 TestFlight，請先安裝 Apple 官方 TestFlight App。', stepOneButton: '下載 Apple TestFlight', stepTwoTitle: '② 加入《星星戀愛日記》測試版', stepTwoBody: '安裝完成後，請回到此頁，再點選下方按鈕加入測試。', stepTwoButton: '開啟《星星戀愛日記》測試版', note: '點選「接受」後再按「安裝」，即可開始使用。' },
   legal: { privacy: '隱私政策', terms: '使用條款', back: '返回首頁', pending: '此項正式內容將於 App 發布前提供。', privacyNotice: '正式隱私政策將於 App 正式發布前公布。', termsNotice: '正式使用條款將於 App 正式發布前公布。', privacySections: ['資料儲存', '照片', '分享功能', '第三方服務', '聯絡方式', '政策更新日期'], termsSections: ['使用範圍', '使用者內容', '功能限制', '免責事項', '智慧財產', '條款更新', '聯絡方式'] },
 } satisfies Translation

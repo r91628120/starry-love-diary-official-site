@@ -3,4 +3,4 @@ import { createRoot } from 'react-dom/client'
 import { App } from './App'
 import './styles/site.css'
 
-createRoot(document.getElementById('root')!).render(<StrictMode><App page={document.body.dataset.page === 'privacy' ? 'privacy' : document.body.dataset.page === 'terms' ? 'terms' : 'home'} /></StrictMode>)
+createRoot(document.getElementById('root')!).render(<StrictMode><App page={document.body.dataset.page === 'privacy' ? 'privacy' : document.body.dataset.page === 'terms' ? 'terms' : document.body.dataset.page === 'ios-testflight' ? 'ios-testflight' : 'home'} /></StrictMode>)

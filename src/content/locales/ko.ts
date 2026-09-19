@@ -18,5 +18,6 @@ export default {
   cat: { title: '누구에게 말해야 할지 모르겠는 마음이라면, 먼저 검은 고양이에게 들려주세요.', body: '누군가를 잊으라고 재촉하지 않아요.\n좋아해도 되는지 대신 정하지도 않아요.\n\n내 마음을 천천히 알아가는 동안,\n그저 조용히 곁에 있어요.', alt: '별을 조용히 바라보는 검은 고양이' },
   privacy: { title: '당신의 마음을 위한, 당신만의 공간', body: '사랑은 아주 사적인 이야기일 수 있어요.\n일기도 그래야겠지요.\n\n별빛 연애일기는 당신의 개인적인 공간을 소중히 여겨요.\n마음과 추억을 편안하게 기록할 수 있는 곳이 되기를 바라요.' },
   final: { body: '설렘을 적어두고,\n천천히 나를 되찾아요.' },
+  testFlight: { entry: '무료 iOS 베타 참여하기', entrySubtitle: 'TestFlight', title: '별빛 연애일기 iOS 베타 참여하기', intro: '별빛 연애일기는 현재 테스트 중입니다. 아래 두 단계에 따라 시작해 보세요.', stepOneTitle: '① Apple TestFlight 먼저 설치하기', stepOneBody: 'iPhone에 TestFlight가 없다면 Apple 공식 TestFlight 앱을 먼저 설치해 주세요.', stepOneButton: 'Apple TestFlight 다운로드', stepTwoTitle: '② 별빛 연애일기 베타 참여하기', stepTwoBody: '설치가 끝나면 이 페이지로 돌아와 아래 버튼을 눌러 테스트에 참여해 주세요.', stepTwoButton: '별빛 연애일기 베타 열기', note: '“수락”을 누른 뒤 “설치”를 누르면 시작할 수 있어요.' },
   legal: { privacy: '개인정보 처리방침', terms: '이용약관', back: '홈으로 돌아가기', pending: '정식 내용은 앱 출시 전에 제공됩니다.', privacyNotice: '정식 개인정보 처리방침은 앱 출시 전에 공개됩니다.', termsNotice: '정식 이용약관은 앱 출시 전에 공개됩니다.', privacySections: ['데이터 저장', '사진', '공유 기능', '제3자 서비스', '문의', '방침 업데이트 날짜'], termsSections: ['이용 범위', '사용자 콘텐츠', '기능 제한', '면책 사항', '지식재산권', '약관 변경', '문의'] },
 } satisfies Translation
